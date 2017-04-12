@@ -40,14 +40,10 @@ RSpec.configure do |config|
   config.include RequestSpecHelper, type: :request
   
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
-
+  # add `FactoryGirl` methods
   config.include FactoryGirl::Syntax::Methods
 
-  # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
+    # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
@@ -59,6 +55,12 @@ RSpec.configure do |config|
       example.run
     end
   end
+  
+  # If you're not using ActiveRecord, or you'd prefer not to run each of your
+  # examples within a transaction, remove the following line or assign false
+  # instead of true.
+  config.use_transactional_fixtures = true
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.

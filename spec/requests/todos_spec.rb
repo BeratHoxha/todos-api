@@ -6,7 +6,6 @@ RSpec.describe 'Todos API', type: :request do
 
   describe 'GET /todos' do
     before { get '/todos' } 
-
     it 'returns todo' do 
       expect(json).not_to be_empty
       expect(json.size).to eq(10)
@@ -22,7 +21,7 @@ RSpec.describe 'Todos API', type: :request do
 
     context 'when the record exists' do 
       it 'returns the todo' do
-        expect(json).to.not be_empty
+        expect(json).not_to be_empty
         expect(json[:id]).to eq(todo_id)
       end
       
